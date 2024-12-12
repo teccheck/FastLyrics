@@ -10,7 +10,7 @@ fail() {
 }
 
 run_codespell() {
-    codespell app/src -S "app/src/main/res/values-*" || fail codespell $?
+    codespell || fail codespell $?
 }
 
 run_ktlint() {
