@@ -30,9 +30,10 @@ import io.github.teccheck.fastlyrics.model.SongWithLyrics
 import io.github.teccheck.fastlyrics.model.SyncedLyrics
 
 object Utils {
-    fun <T, E> result(value: T?, exception: E): Result<T, E> {
-        return if (value == null) Failure(exception)
-        else Success(value)
+    fun <T, E> result(value: T?, exception: E): Result<T, E> = if (value == null) {
+        Failure(exception)
+    } else {
+        Success(value)
     }
 
     fun View.setVisible(visible: Boolean) {
@@ -43,8 +44,7 @@ object Utils {
         ContextCompat.getSystemService(context, ClipboardManager::class.java)
             ?.setPrimaryClip(ClipData.newPlainText(title, text))
 
-    fun openLink(context: Context, link: String) =
-        context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(link)))
+    fun openLink(context: Context, link: String) = context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(link)))
 
     fun share(context: Context, songTitle: String, artist: String, text: String) {
         val title = context.getString(R.string.share_title, songTitle, artist)
@@ -57,13 +57,15 @@ object Utils {
 
         if (lyricsPlain != null) return lyricsPlain
 
-        if (lyricsSynced != null) return SyncedLyrics.parseLrcToList(lyricsSynced)
-            .joinToString("\n") { it.text }
+        if (lyricsSynced != null) {
+            return SyncedLyrics.parseLrcToList(lyricsSynced)
+                .joinToString("\n") { it.text }
+        }
 
         return ""
     }
 
-    fun JsonElement.asStringOrNull() : String? {
+    fun JsonElement.asStringOrNull(): String? {
         if (this.isJsonNull) return null
         return this.asString
     }

@@ -17,7 +17,9 @@ import io.github.teccheck.fastlyrics.ui.permission.PermissionActivity
 import io.github.teccheck.fastlyrics.ui.saved.SavedActivity
 import io.github.teccheck.fastlyrics.ui.settings.SettingsActivity
 
-class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity :
+    BaseActivity(),
+    NavigationView.OnNavigationItemSelectedListener {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var navController: NavController
@@ -50,22 +52,19 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         return super.onCreateOptionsMenu(menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.app_bar_search -> {
-                if (navController.currentDestination?.id != R.id.nav_search) {
-                    navController.navigate(R.id.nav_search)
-                }
-                true
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = when (item.itemId) {
+        R.id.app_bar_search -> {
+            if (navController.currentDestination?.id != R.id.nav_search) {
+                navController.navigate(R.id.nav_search)
             }
-
-            else -> super.onOptionsItemSelected(item)
+            true
         }
+
+        else -> super.onOptionsItemSelected(item)
     }
 
-    override fun onSupportNavigateUp(): Boolean {
-        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
-    }
+    override fun onSupportNavigateUp(): Boolean =
+        navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
@@ -80,9 +79,7 @@ class MainActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedList
         return false
     }
 
-    fun getSearchMenuItem(): MenuItem? {
-        return searchMenuItem
-    }
+    fun getSearchMenuItem(): MenuItem? = searchMenuItem
 
     companion object {
         private const val TAG = "MainActivity"

@@ -7,11 +7,10 @@ data class SongMeta(
     val artist: String? = null,
     val album: String? = null,
     val art: Bitmap? = null,
-    val duration: Long? = null,
+    val duration: Long? = null
 ) {
-    override fun toString(): String {
-        return "SongMeta(title='$title', artist=$artist, album=$album, art=$art, duration=$duration)"
-    }
+    override fun toString(): String =
+        "SongMeta(title='$title', artist=$artist, album=$album, art=$art, duration=$duration)"
 
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

@@ -16,26 +16,18 @@ class Settings(context: Context) {
     }
 
     @StyleRes
-    fun getMaterialStyle(): Int {
-        return when (sharedPreferences.getString(KEY_MATERIAL_STYLE, DEFAULT_MATERIAL_STYLE)) {
-            MATERIAL_STYLE_ONE -> R.style.Theme_FastLyrics_Material1
-            MATERIAL_STYLE_TWO -> R.style.Theme_FastLyrics_Material2
-            MATERIAL_STYLE_THREE -> R.style.Theme_FastLyrics_Material3
-            else -> R.style.Theme_FastLyrics_Material2
-        }
+    fun getMaterialStyle(): Int = when (sharedPreferences.getString(KEY_MATERIAL_STYLE, DEFAULT_MATERIAL_STYLE)) {
+        MATERIAL_STYLE_ONE -> R.style.Theme_FastLyrics_Material1
+        MATERIAL_STYLE_TWO -> R.style.Theme_FastLyrics_Material2
+        MATERIAL_STYLE_THREE -> R.style.Theme_FastLyrics_Material3
+        else -> R.style.Theme_FastLyrics_Material2
     }
 
-    fun getIsAutoRefreshEnabled(): Boolean {
-        return sharedPreferences.getBoolean(KEY_AUTO_REFRESH, false)
-    }
+    fun getIsAutoRefreshEnabled(): Boolean = sharedPreferences.getBoolean(KEY_AUTO_REFRESH, false)
 
-    fun getSyncedLyricsByDefault(): Boolean {
-        return sharedPreferences.getBoolean(KEY_SYNCED_LYRICS_BY_DEFAULT, false)
-    }
+    fun getSyncedLyricsByDefault(): Boolean = sharedPreferences.getBoolean(KEY_SYNCED_LYRICS_BY_DEFAULT, false)
 
-    fun getTextSize(): Int {
-        return sharedPreferences.getInt(KEY_TEXT_SIZE, 18)
-    }
+    fun getTextSize(): Int = sharedPreferences.getInt(KEY_TEXT_SIZE, 18)
 
     companion object {
         private const val KEY_APP_THEME = "app_theme"
@@ -51,5 +43,4 @@ class Settings(context: Context) {
         private const val DEFAULT_APP_THEME = "-1"
         private const val DEFAULT_MATERIAL_STYLE = MATERIAL_STYLE_TWO
     }
-
 }

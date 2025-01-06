@@ -18,6 +18,7 @@ import io.github.teccheck.fastlyrics.model.SearchResult
 import io.github.teccheck.fastlyrics.model.SongMeta
 import io.github.teccheck.fastlyrics.model.SongWithLyrics
 import io.github.teccheck.fastlyrics.utils.Utils.asStringOrNull
+import java.io.IOException
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONException
@@ -27,7 +28,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
-import java.io.IOException
 
 object LrcLib : LyricsProvider {
     private const val TAG = "LrclibProvider"
@@ -69,7 +69,10 @@ object LrcLib : LyricsProvider {
         try {
             if (songMeta.artist != null) {
                 val call = apiService.get(
-                    songMeta.title, songMeta.artist, songMeta.album, songMeta.duration?.div(1000)
+                    songMeta.title,
+                    songMeta.artist,
+                    songMeta.album,
+                    songMeta.duration?.div(1000)
                 )
 
                 call?.let { it.execute().body()?.asJsonObject }?.let {
@@ -92,11 +95,13 @@ object LrcLib : LyricsProvider {
             }
 
             val jsonBody = apiService.search(
-                null, songMeta.title, songMeta.artist, songMeta.album
+                null,
+                songMeta.title,
+                songMeta.artist,
+                songMeta.album
             )?.execute()?.body()?.asJsonArray
 
             return Success(parseSearchResults(jsonBody))
-
         } catch (e: IOException) {
             Log.e(TAG, e.message, e)
             return Failure(NetworkException())
@@ -167,21 +172,19 @@ object LrcLib : LyricsProvider {
         }
     }
 
-    private fun parseSongWithLyrics(json: JsonObject): SongWithLyrics {
-        return SongWithLyrics(
-            0,
-            json.get(TRACK_NAME).asString,
-            json.get(ARTIST_NAME).asString,
-            json.get(LYRICS_PLAN).asString,
-            json.get(LYRICS_SYNCED).asStringOrNull(),
-            "https://lrclib.net/",
-            json.get(ALBUM_NAME).asString,
-            null,
-            json.get(DURATION).asLong * 1000,
-            LyricsType.LRC,
-            getName()
-        )
-    }
+    private fun parseSongWithLyrics(json: JsonObject): SongWithLyrics = SongWithLyrics(
+        0,
+        json.get(TRACK_NAME).asString,
+        json.get(ARTIST_NAME).asString,
+        json.get(LYRICS_PLAN).asString,
+        json.get(LYRICS_SYNCED).asStringOrNull(),
+        "https://lrclib.net/",
+        json.get(ALBUM_NAME).asString,
+        null,
+        json.get(DURATION).asLong * 1000,
+        LyricsType.LRC,
+        getName()
+    )
 
     interface ApiService {
         @GET("search")
@@ -189,7 +192,7 @@ object LrcLib : LyricsProvider {
             @Query("q") query: String?,
             @Query("track_name") trackName: String? = null,
             @Query("artist_name") artistName: String? = null,
-            @Query("album_name") albumName: String? = null,
+            @Query("album_name") albumName: String? = null
         ): Call<JsonElement>?
 
         @GET("get")
@@ -197,7 +200,7 @@ object LrcLib : LyricsProvider {
             @Query("track_name") trackName: String,
             @Query("artist_name") artistName: String,
             @Query("album_name") albumName: String? = null,
-            @Query("duration") duration: Long? = null,
+            @Query("duration") duration: Long? = null
         ): Call<JsonElement>?
 
         @GET("get/{songId}")

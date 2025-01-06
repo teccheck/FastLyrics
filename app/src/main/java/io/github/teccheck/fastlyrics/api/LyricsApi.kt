@@ -70,9 +70,7 @@ object LyricsApi {
         executor.submit { liveDataTarget.postValue(provider.search(query)) }
     }
 
-    private fun fetchLyrics(
-        songMeta: SongMeta, synced: Boolean = false
-    ): Result<SongWithLyrics, LyricsApiException> {
+    private fun fetchLyrics(songMeta: SongMeta, synced: Boolean = false): Result<SongWithLyrics, LyricsApiException> {
         Log.d(TAG, "fetchLyrics($songMeta, $synced)")
         var bestResult: SearchResult? = null
         var bestResultScore = 0.0
@@ -106,14 +104,23 @@ object LyricsApi {
     private fun getResultScore(songMeta: SongMeta, searchResult: SearchResult): Double {
         var score = 0.0
 
-        if (songMeta.title == searchResult.title) score += 0.5
-        else if (songMeta.title.startsWith(searchResult.title)) score += 0.4
-        else if (searchResult.title.startsWith(songMeta.title)) score += 0.3
+        if (songMeta.title == searchResult.title) {
+            score += 0.5
+        } else if (songMeta.title.startsWith(searchResult.title)) {
+            score += 0.4
+        } else if (searchResult.title.startsWith(songMeta.title)) {
+            score += 0.3
+        }
 
-        if (songMeta.artist == null) return score
-        else if (songMeta.artist == searchResult.artist) score += 0.5
-        else if (songMeta.artist.startsWith(searchResult.artist)) score += 0.4
-        else if (searchResult.artist.startsWith(songMeta.artist)) score += 0.3
+        if (songMeta.artist == null) {
+            return score
+        } else if (songMeta.artist == searchResult.artist) {
+            score += 0.5
+        } else if (songMeta.artist.startsWith(searchResult.artist)) {
+            score += 0.4
+        } else if (searchResult.artist.startsWith(songMeta.artist)) {
+            score += 0.3
+        }
 
         if (songMeta.album == searchResult.album) score += 0.5
 

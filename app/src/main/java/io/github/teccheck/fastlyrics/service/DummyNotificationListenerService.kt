@@ -8,9 +8,8 @@ import androidx.core.app.NotificationManagerCompat
 class DummyNotificationListenerService : NotificationListenerService() {
 
     companion object {
-        fun canAccessNotifications(context: Context): Boolean {
-            return NotificationManagerCompat.getEnabledListenerPackages(context)
+        fun canAccessNotifications(context: Context): Boolean =
+            NotificationManagerCompat.getEnabledListenerPackages(context)
                 .contains(context.packageName)
-        }
     }
 }

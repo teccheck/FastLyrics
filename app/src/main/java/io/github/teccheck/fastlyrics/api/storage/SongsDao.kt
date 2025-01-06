@@ -15,7 +15,6 @@ interface SongsDao {
     @Query("SELECT * FROM songs WHERE title = :title AND artist = :artist")
     fun findSong(title: String, artist: String): SongWithLyrics?
 
-
     @Query("SELECT * FROM songs WHERE title = :title AND artist = :artist AND type = :type")
     fun findSong(title: String, artist: String, type: LyricsType): SongWithLyrics?
 

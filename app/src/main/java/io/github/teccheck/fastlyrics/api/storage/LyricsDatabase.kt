@@ -19,14 +19,14 @@ abstract class LyricsDatabase : RoomDatabase() {
 
     companion object {
         val MIGRATION_3_4 = object : Migration(3, 4) {
-            override fun migrate(database: SupportSQLiteDatabase) {
+            override fun migrate(db: SupportSQLiteDatabase) {
                 Log.d("Migration", "Start")
-                database.execSQL("ALTER TABLE songs ADD COLUMN lyricsPlain TEXT")
-                database.execSQL("ALTER TABLE songs ADD COLUMN lyricsSynced TEXT")
-                database.execSQL("UPDATE songs SET lyricsPlain = lyrics")
-                database.execSQL("UPDATE songs SET lyricsSynced = lyricsPlain WHERE type = 'LRC'")
-                database.execSQL("UPDATE songs SET lyricsPlain = '' WHERE type = 'LRC'")
-                database.execSQL("ALTER TABLE songs DROP COLUMN lyrics")
+                db.execSQL("ALTER TABLE songs ADD COLUMN lyricsPlain TEXT")
+                db.execSQL("ALTER TABLE songs ADD COLUMN lyricsSynced TEXT")
+                db.execSQL("UPDATE songs SET lyricsPlain = lyrics")
+                db.execSQL("UPDATE songs SET lyricsSynced = lyricsPlain WHERE type = 'LRC'")
+                db.execSQL("UPDATE songs SET lyricsPlain = '' WHERE type = 'LRC'")
+                db.execSQL("ALTER TABLE songs DROP COLUMN lyrics")
                 Log.d("Migration", "End")
             }
         }

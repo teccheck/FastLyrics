@@ -78,7 +78,6 @@ object Netease : LyricsProvider {
             Log.e(TAG, e.message, e)
             return Failure(NetworkException())
         }
-
     }
 
     override fun fetchLyrics(songId: Long): Result<SongWithLyrics, LyricsApiException> {
@@ -124,7 +123,7 @@ object Netease : LyricsProvider {
             @Query("limit") csRfToken: Int = 6,
             @Query("type") type: Int = 1,
             @Query("offset") offset: Int = 0,
-            @Query("total") total: Boolean = true,
+            @Query("total") total: Boolean = true
         ): Call<JsonObject>
 
         @GET("song/lyric")
@@ -132,7 +131,7 @@ object Netease : LyricsProvider {
             @Query("id") id: Long,
             @Query("lv") lv: Int = -1,
             @Query("kv") kv: Int = -1,
-            @Query("tv") tv: Int = -1,
+            @Query("tv") tv: Int = -1
         ): Call<JsonObject>
     }
 }

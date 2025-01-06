@@ -16,11 +16,9 @@ class ViewLyricsViewModel : ViewModel() {
 
     val songWithLyrics: LiveData<Result<SongWithLyrics, LyricsApiException>> = _songWithLyrics
 
-    fun loadLyricsForSongFromStorage(songId: Long) =
-        LyricStorage.getSongAsync(songId, _songWithLyrics)
+    fun loadLyricsForSongFromStorage(songId: Long) = LyricStorage.getSongAsync(songId, _songWithLyrics)
 
-    fun loadLyricsForSearchResult(searchResult: SearchResult) =
-        LyricsApi.getLyricsAsync(searchResult, _songWithLyrics)
+    fun loadLyricsForSearchResult(searchResult: SearchResult) = LyricsApi.getLyricsAsync(searchResult, _songWithLyrics)
 
     companion object {
         private const val TAG = "ViewLyricsViewModel"

@@ -12,8 +12,7 @@ import io.github.teccheck.fastlyrics.api.provider.LyricsProvider
 import io.github.teccheck.fastlyrics.utils.ProviderOrder
 import io.github.teccheck.fastlyrics.utils.Utils
 
-class ProviderRecyclerAdapter() :
-    RecyclerView.Adapter<ProviderRecyclerAdapter.ViewHolder>() {
+class ProviderRecyclerAdapter : RecyclerView.Adapter<ProviderRecyclerAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val icon: ImageView = view.findViewById(R.id.icon)
@@ -48,9 +47,7 @@ class ProviderRecyclerAdapter() :
         return ViewHolder(view)
     }
 
-    override fun getItemCount(): Int {
-        return ProviderOrder.getOrderCount()
-    }
+    override fun getItemCount(): Int = ProviderOrder.getOrderCount()
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(ProviderOrder.getProvider(position))

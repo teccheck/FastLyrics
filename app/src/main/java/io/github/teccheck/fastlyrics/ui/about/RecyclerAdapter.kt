@@ -11,8 +11,7 @@ import io.github.teccheck.fastlyrics.R
 import io.github.teccheck.fastlyrics.api.provider.LyricsProvider
 import io.github.teccheck.fastlyrics.utils.Utils
 
-class RecyclerAdapter(private val urlOpener: UrlOpener) :
-    RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+class RecyclerAdapter(private val urlOpener: UrlOpener) : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         private val icon: ImageView = view.findViewById(R.id.icon)
