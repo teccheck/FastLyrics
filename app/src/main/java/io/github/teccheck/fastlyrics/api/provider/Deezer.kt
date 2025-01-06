@@ -185,16 +185,15 @@ object Deezer : LyricsProvider {
         )
     }
 
-    private fun parseSyncedLyrics(lines: JsonArray): String {
-        return lines.joinToString(separator = "\n") {
-            val line = it.asJsonObject
-            "${line.get("lrcTimestamp").asString}${line.get("line").asString}"
-        }
+    private fun parseSyncedLyrics(lines: JsonArray): String = lines.joinToString(separator = "\n") {
+        val line = it.asJsonObject
+        "${line.get("lrcTimestamp").asString}${line.get("line").asString}"
     }
 
     private fun getAuthToken(): String? {
-        if (authToken == null) authToken =
-            apiService.auth()?.execute()?.body()?.get(KEY_JWT)?.asString
+        if (authToken == null) {
+            authToken = apiService.auth()?.execute()?.body()?.get(KEY_JWT)?.asString
+        }
         return authToken
     }
 
@@ -245,7 +244,7 @@ object Deezer : LyricsProvider {
                 }
               }
             }
-            """.trimIndent()
+        """.trimIndent()
         queryJson.addProperty("query", query)
         return queryJson
     }
@@ -314,8 +313,6 @@ object Deezer : LyricsProvider {
         fun auth(): Call<JsonObject>?
 
         @POST("https://pipe.deezer.com/api")
-        fun query(
-            @Body body: JsonObject, @Header("Authorization") authString: String
-        ): Call<JsonObject>?
+        fun query(@Body body: JsonObject, @Header("Authorization") authString: String): Call<JsonObject>?
     }
 }

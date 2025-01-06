@@ -25,7 +25,6 @@ data class SongWithLyrics(
     @ColumnInfo(defaultValue = "genius")
     val provider: String
 ) : Serializable {
-    override fun toString(): String {
-        return "SongWithLyrics(id=$id, title='$title', artist='$artist', lyricsPlain=$lyricsPlain, lyricsSynced=$lyricsSynced, sourceUrl='$sourceUrl', album=$album, artUrl=$artUrl, type=$type, provider='$provider')"
-    }
+    override fun toString(): String =
+        "SongWithLyrics(id=$id, title='$title', artist='$artist', lyricsPlain=$lyricsPlain, lyricsSynced=$lyricsSynced, sourceUrl='$sourceUrl', album=$album, artUrl=$artUrl, type=$type, provider='$provider')"
 }

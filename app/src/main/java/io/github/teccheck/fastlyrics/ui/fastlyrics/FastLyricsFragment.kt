@@ -10,8 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.squareup.picasso.Picasso
 import dev.forkhandles.result4k.Failure
-import dev.forkhandles.result4k.Success
 import dev.forkhandles.result4k.Result
+import dev.forkhandles.result4k.Success
 import dev.forkhandles.result4k.valueOrNull
 import io.github.teccheck.fastlyrics.R
 import io.github.teccheck.fastlyrics.Settings
@@ -35,9 +35,7 @@ class FastLyricsFragment : Fragment() {
 
     private lateinit var settings: Settings
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         lyricsViewModel = ViewModelProvider(this)[FastLyricsViewModel::class.java]
         _binding = FragmentFastLyricsBinding.inflate(inflater, container, false)
 
@@ -104,7 +102,10 @@ class FastLyricsFragment : Fragment() {
 
             binding.lyricsView.textLyricsProvider.setText(providerNameRes)
             binding.lyricsView.textLyricsProvider.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                providerIconRes, 0, 0, 0
+                providerIconRes,
+                0,
+                0,
+                0
             )
         }
 
@@ -122,7 +123,6 @@ class FastLyricsFragment : Fragment() {
 
         if (state.startRefresh) loadLyricsForCurrentSong()
 
-
         // Apply settings
         lyricsViewModel.autoRefresh = settings.getIsAutoRefreshEnabled()
 
@@ -132,7 +132,9 @@ class FastLyricsFragment : Fragment() {
         binding.lyricsView.lyricViewX.apply {
             setNormalTextSize(
                 TypedValue.applyDimension(
-                    TypedValue.COMPLEX_UNIT_SP, textSize, resources.displayMetrics
+                    TypedValue.COMPLEX_UNIT_SP,
+                    textSize,
+                    resources.displayMetrics
                 )
             )
             setCurrentColor(resources.getColor(R.color.theme_primary))

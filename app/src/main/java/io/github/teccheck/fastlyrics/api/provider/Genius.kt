@@ -14,6 +14,7 @@ import io.github.teccheck.fastlyrics.exceptions.ParseException
 import io.github.teccheck.fastlyrics.model.LyricsType
 import io.github.teccheck.fastlyrics.model.SearchResult
 import io.github.teccheck.fastlyrics.model.SongWithLyrics
+import java.io.IOException
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.json.JSONException
@@ -23,7 +24,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
-import java.io.IOException
 
 object Genius : LyricsProvider {
 

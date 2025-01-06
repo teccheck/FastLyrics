@@ -17,9 +17,8 @@ class DetailsLookup(private val recyclerView: RecyclerView) : ItemDetailsLookup<
         )
     }
 
-    class SongWithLyricsDetails(
-        private val position: Int, private val itemId: Long?, val songId: Long?
-    ) : ItemDetails<Long>() {
+    class SongWithLyricsDetails(private val position: Int, private val itemId: Long?, val songId: Long?) :
+        ItemDetails<Long>() {
 
         override fun getPosition() = position
 

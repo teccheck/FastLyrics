@@ -15,8 +15,7 @@ import io.github.teccheck.fastlyrics.model.SongWithLyrics
 import io.github.teccheck.fastlyrics.utils.PlaceholderDrawable
 import io.github.teccheck.fastlyrics.utils.Utils
 
-class RecyclerAdapter :
-    RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
     private var songs: List<SongWithLyrics> = listOf()
     private var selectionTracker: SelectionTracker<Long>? = null
@@ -78,4 +77,3 @@ class RecyclerAdapter :
         this.selectionTracker = selectionTracker
     }
 }
-

@@ -32,11 +32,13 @@ object MediaSession {
     private var initialized = false
 
     fun init(context: Context) {
-        if (!DummyNotificationListenerService.canAccessNotifications(context))
+        if (!DummyNotificationListenerService.canAccessNotifications(context)) {
             return
+        }
 
-        if (initialized)
+        if (initialized) {
             return
+        }
 
         initialized = true
 
@@ -136,14 +138,23 @@ object MediaSession {
     }
 
     private fun isActive(playbackState: PlaybackState?): Boolean {
-        if (playbackState == null)
+        if (playbackState == null) {
             return false
+        }
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             return playbackState.isActive
+        }
 
         return when (playbackState.state) {
-            PlaybackState.STATE_FAST_FORWARDING, PlaybackState.STATE_REWINDING, PlaybackState.STATE_SKIPPING_TO_PREVIOUS, PlaybackState.STATE_SKIPPING_TO_NEXT, PlaybackState.STATE_SKIPPING_TO_QUEUE_ITEM, PlaybackState.STATE_BUFFERING, PlaybackState.STATE_CONNECTING, PlaybackState.STATE_PLAYING -> true
+            PlaybackState.STATE_FAST_FORWARDING,
+            PlaybackState.STATE_REWINDING,
+            PlaybackState.STATE_SKIPPING_TO_PREVIOUS,
+            PlaybackState.STATE_SKIPPING_TO_NEXT,
+            PlaybackState.STATE_SKIPPING_TO_QUEUE_ITEM,
+            PlaybackState.STATE_BUFFERING,
+            PlaybackState.STATE_CONNECTING,
+            PlaybackState.STATE_PLAYING -> true
             else -> false
         }
     }

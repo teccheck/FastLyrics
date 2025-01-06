@@ -32,9 +32,7 @@ interface LyricsProvider : Serializable {
     }
 
     companion object {
-        fun getAllProviders(): Array<LyricsProvider> {
-            return arrayOf(Deezer, Genius, LrcLib, PetitLyrics, Netease)
-        }
+        fun getAllProviders(): Array<LyricsProvider> = arrayOf(Deezer, Genius, LrcLib, PetitLyrics, Netease)
 
         fun getProviderByName(name: String) = getAllProviders().find { it.getName() == name }
     }

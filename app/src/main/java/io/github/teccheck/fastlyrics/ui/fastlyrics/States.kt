@@ -16,7 +16,7 @@ open class UiState(
     val showError: Boolean,
     val showText: Boolean,
     val isRefreshing: Boolean = false,
-    val startRefresh: Boolean = false,
+    val startRefresh: Boolean = false
 ) {
     // Header
     open fun getSongTitle(): String = ""

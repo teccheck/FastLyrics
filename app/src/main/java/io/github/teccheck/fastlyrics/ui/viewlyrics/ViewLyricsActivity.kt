@@ -72,7 +72,10 @@ class ViewLyricsActivity : BaseActivity() {
 
             binding.lyricsView.textLyricsProvider.setText(nameRes)
             binding.lyricsView.textLyricsProvider.setCompoundDrawablesRelativeWithIntrinsicBounds(
-                providerIconRes, 0, 0, 0
+                providerIconRes,
+                0,
+                0,
+                0
             )
         }
 
@@ -93,13 +96,14 @@ class ViewLyricsActivity : BaseActivity() {
         }
     }
 
-    private fun getSearchResult(intent: Intent): SearchResult? {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+    private fun getSearchResult(intent: Intent): SearchResult? =
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             intent.getSerializableExtra(ARG_SEARCH_RESULT, SearchResult::class.java)
         } else {
-            @Suppress("DEPRECATION") intent.getSerializableExtra(ARG_SEARCH_RESULT) as SearchResult
+            @Suppress("DEPRECATION")
+            intent.getSerializableExtra(ARG_SEARCH_RESULT)
+                as SearchResult
         }
-    }
 
     companion object {
         private const val TAG = "ViewLyricsFragment"

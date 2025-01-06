@@ -37,17 +37,13 @@ class SavedActivity : BaseActivity() {
     }
 
     private val actionModeCallback = object : ActionMode.Callback {
-        override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean {
-            return this@SavedActivity.onCreateActionMode(menu)
-        }
+        override fun onCreateActionMode(mode: ActionMode?, menu: Menu?): Boolean =
+            this@SavedActivity.onCreateActionMode(menu)
 
-        override fun onPrepareActionMode(mode: ActionMode?, menu: Menu?): Boolean {
-            return false
-        }
+        override fun onPrepareActionMode(mode: ActionMode?, menu: Menu?): Boolean = false
 
-        override fun onActionItemClicked(mode: ActionMode?, item: MenuItem?): Boolean {
-            return this@SavedActivity.onActionItemClicked(mode, item)
-        }
+        override fun onActionItemClicked(mode: ActionMode?, item: MenuItem?): Boolean =
+            this@SavedActivity.onActionItemClicked(mode, item)
 
         override fun onDestroyActionMode(mode: ActionMode?) {
             this@SavedActivity.onDestroyActionMode()
@@ -98,9 +94,7 @@ class SavedActivity : BaseActivity() {
         selectionTracker.onRestoreInstanceState(savedInstanceState)
     }
 
-    private fun onItemActivated(
-        item: ItemDetailsLookup.ItemDetails<Long>, e: MotionEvent
-    ): Boolean {
+    private fun onItemActivated(item: ItemDetailsLookup.ItemDetails<Long>, e: MotionEvent): Boolean {
         (item as DetailsLookup.SongWithLyricsDetails).songId?.let { viewSong(it) }
         return false
     }
@@ -124,18 +118,16 @@ class SavedActivity : BaseActivity() {
         return true
     }
 
-    private fun onActionItemClicked(mode: ActionMode?, item: MenuItem?): Boolean {
-        return when (item?.itemId) {
-            R.id.delete -> {
-                deleteItems(selectionTracker.selection.toList())
-                viewModel.fetchSongs()
-                selectionTracker.clearSelection()
-                mode?.finish()
-                true
-            }
-
-            else -> false
+    private fun onActionItemClicked(mode: ActionMode?, item: MenuItem?): Boolean = when (item?.itemId) {
+        R.id.delete -> {
+            deleteItems(selectionTracker.selection.toList())
+            viewModel.fetchSongs()
+            selectionTracker.clearSelection()
+            mode?.finish()
+            true
         }
+
+        else -> false
     }
 
     private fun onDestroyActionMode() {
@@ -151,7 +143,9 @@ class SavedActivity : BaseActivity() {
 
     private fun deleteItems(itemIds: List<Long>) {
         val songIds =
-            itemIds.map { (binding.recyclerView.findViewHolderForItemId(it) as RecyclerAdapter.ViewHolder).getSongId()!! }
+            itemIds.map {
+                (binding.recyclerView.findViewHolderForItemId(it) as RecyclerAdapter.ViewHolder).getSongId()!!
+            }
 
         LyricStorage.deleteAsync(songIds)
     }

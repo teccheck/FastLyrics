@@ -13,8 +13,7 @@ class DetailsLookup(private val recyclerView: RecyclerView) : ItemDetailsLookup<
         return SearchResultDetails(viewHolder.adapterPosition, viewHolder.itemId)
     }
 
-    class SearchResultDetails(private val position: Int, private val itemId: Long?) :
-        ItemDetails<Long>() {
+    class SearchResultDetails(private val position: Int, private val itemId: Long?) : ItemDetails<Long>() {
 
         override fun getPosition() = position
 

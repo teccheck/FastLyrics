@@ -39,17 +39,13 @@ class SearchFragment : Fragment() {
     private var searchMenuItem: MenuItem? = null
     private var searchView: SearchView? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this)[SearchViewModel::class.java]
 
         searchMenuItem = (activity as MainActivity).getSearchMenuItem()
         searchMenuItem?.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
-            override fun onMenuItemActionExpand(item: MenuItem): Boolean {
-                return true
-            }
+            override fun onMenuItemActionExpand(item: MenuItem): Boolean = true
 
             override fun onMenuItemActionCollapse(item: MenuItem): Boolean {
                 findNavController().navigateUp()
@@ -59,13 +55,9 @@ class SearchFragment : Fragment() {
 
         searchView = (searchMenuItem?.actionView as SearchView?)
         searchView?.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return this@SearchFragment.onQueryTextSubmit(query)
-            }
+            override fun onQueryTextSubmit(query: String?): Boolean = this@SearchFragment.onQueryTextSubmit(query)
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                return this@SearchFragment.onQueryTextChange(newText)
-            }
+            override fun onQueryTextChange(newText: String?): Boolean = this@SearchFragment.onQueryTextChange(newText)
         })
 
         recyclerAdapter = RecyclerAdapter()
@@ -98,8 +90,9 @@ class SearchFragment : Fragment() {
     }
 
     private fun onQueryTextSubmit(query: String?): Boolean {
-        if (query?.isBlank() != false)
+        if (query?.isBlank() != false) {
             return true
+        }
 
         binding.progressIndicator.visibility = View.VISIBLE
         viewModel.search(query)
@@ -111,9 +104,7 @@ class SearchFragment : Fragment() {
         return true
     }
 
-    private fun onItemActivated(
-        item: ItemDetailsLookup.ItemDetails<Long>, e: MotionEvent
-    ): Boolean {
+    private fun onItemActivated(item: ItemDetailsLookup.ItemDetails<Long>, e: MotionEvent): Boolean {
         val viewHolder = item.selectionKey?.let { binding.recyclerView.findViewHolderForItemId(it) }
         val searchResult = (viewHolder as RecyclerAdapter.ViewHolder).getSearchResult()
         searchResult?.let { viewSearchResult(it) }

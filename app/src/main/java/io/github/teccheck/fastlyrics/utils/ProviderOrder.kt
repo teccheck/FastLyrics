@@ -26,9 +26,7 @@ object ProviderOrder {
         this.enabled[provider] = enabled
     }
 
-    fun getEnabled(provider: LyricsProvider): Boolean {
-        return this.enabled[provider] ?: false
-    }
+    fun getEnabled(provider: LyricsProvider): Boolean = this.enabled[provider] ?: false
 
     fun getOrderCount(): Int = order.size
 
@@ -52,13 +50,14 @@ object ProviderOrder {
         val editor = sharedPreferences.edit()
         this.order.forEachIndexed { index, lyricsProvider ->
             editor.putInt(
-                orderKey(lyricsProvider.getName()), index
+                orderKey(lyricsProvider.getName()),
+                index
             )
         }
         this.enabled.forEach { editor.putBoolean(enabledKey(it.key.getName()), it.value) }
         editor.apply()
     }
 
-    private fun orderKey(name: String) = "${KEY_PREFIX_PROVIDER_ORDER}_${name}"
-    private fun enabledKey(name: String) = "${KEY_PREFIX_PROVIDER_ENABLED}_${name}"
+    private fun orderKey(name: String) = "${KEY_PREFIX_PROVIDER_ORDER}_$name"
+    private fun enabledKey(name: String) = "${KEY_PREFIX_PROVIDER_ENABLED}_$name"
 }

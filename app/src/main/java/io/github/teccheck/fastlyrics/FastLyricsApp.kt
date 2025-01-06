@@ -13,5 +13,4 @@ class FastLyricsApp : Application() {
         MediaSession.init(this)
         ProviderOrder.init(this)
     }
-
 }

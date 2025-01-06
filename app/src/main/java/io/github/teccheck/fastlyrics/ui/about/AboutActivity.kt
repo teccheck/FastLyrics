@@ -5,8 +5,8 @@ import android.net.Uri
 import android.os.Bundle
 import androidx.annotation.StringRes
 import androidx.recyclerview.widget.LinearLayoutManager
-import io.github.teccheck.fastlyrics.BuildConfig
 import io.github.teccheck.fastlyrics.BaseActivity
+import io.github.teccheck.fastlyrics.BuildConfig
 import io.github.teccheck.fastlyrics.R
 import io.github.teccheck.fastlyrics.databinding.ActivityAboutBinding
 

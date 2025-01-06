@@ -13,6 +13,7 @@ import io.github.teccheck.fastlyrics.model.LyricsType
 import io.github.teccheck.fastlyrics.model.SearchResult
 import io.github.teccheck.fastlyrics.model.SongMeta
 import io.github.teccheck.fastlyrics.model.SongWithLyrics
+import javax.xml.parsers.DocumentBuilderFactory
 import okhttp3.ResponseBody
 import org.w3c.dom.Document
 import org.w3c.dom.Element
@@ -21,7 +22,6 @@ import retrofit2.Retrofit
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
-import javax.xml.parsers.DocumentBuilderFactory
 
 object PetitLyrics : LyricsProvider {
 
@@ -47,7 +47,7 @@ object PetitLyrics : LyricsProvider {
                 songMeta.title,
                 songMeta.artist ?: "",
                 songMeta.album ?: "",
-                songMeta.duration,
+                songMeta.duration
             )?.execute()?.body() ?: return Failure(LyricsNotFoundException())
 
             return Success(wrapSearchResults(response.string()))
@@ -102,7 +102,7 @@ object PetitLyrics : LyricsProvider {
                 artist,
                 lyrics,
                 null,
-                "https://petitlyrics.com/lyrics/${lyricsId}",
+                "https://petitlyrics.com/lyrics/$lyricsId",
                 album,
                 null,
                 null,

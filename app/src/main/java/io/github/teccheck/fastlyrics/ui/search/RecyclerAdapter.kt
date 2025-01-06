@@ -12,8 +12,7 @@ import io.github.teccheck.fastlyrics.R
 import io.github.teccheck.fastlyrics.model.SearchResult
 import io.github.teccheck.fastlyrics.utils.Utils
 
-class RecyclerAdapter :
-    RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
+class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
     private var searchResults: List<SearchResult> = listOf()
 
@@ -58,4 +57,3 @@ class RecyclerAdapter :
         notifyDataSetChanged()
     }
 }
-

@@ -9,7 +9,9 @@ class PlaceholderDrawable(context: Context, @DrawableRes drawable: Int) :
     LayerDrawable(
         arrayOf(
             context.resources.getDrawable(R.color.art_placeholder_background),
-            context.getDrawable(drawable)?.apply { setTint(context.resources.getColor(R.color.art_placeholder_foreground)) }
+            context.getDrawable(drawable)?.apply {
+                setTint(context.resources.getColor(R.color.art_placeholder_foreground))
+            }
         )
     ) {
 
