@@ -7,12 +7,12 @@ plugins {
 android {
     namespace 'io.github.teccheck.fastlyrics'
 
-    compileSdk 34
+    compileSdk 35
 
     defaultConfig {
         applicationId "io.github.teccheck.fastlyrics"
         minSdk 22
-        targetSdk 34
+        targetSdk 35
         versionCode 8
         versionName "0.5.3"
 
