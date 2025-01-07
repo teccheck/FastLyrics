@@ -36,6 +36,13 @@ android {
         viewBinding true
         buildConfig true
     }
+
+    dependenciesInfo {
+        // Disables dependency metadata when building APKs.
+        includeInApk = false
+        // Disables dependency metadata when building Android App Bundles.
+        includeInBundle = false
+    }
 }
 
 // For KSP, configure using KSP extension:
