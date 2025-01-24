@@ -12,8 +12,10 @@
 
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <item name="android:navigationBarColor">?android:colorBackground</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
 
         <item name="materialToolbarStyle">@style/Style.FastLyrics.Material1.Toolbar</item>
+        <item name="appBarLayoutStyle">@style/Style.FastLyrics.Material1.AppBarLayout</item>
         <item name="searchViewStyle">@style/AppTheme.SearchView</item>
 
         <item name="navHeaderBackground">?attr/colorPrimary</item>
@@ -25,6 +27,10 @@
     </style>
 
     <style name="Style.FastLyrics.Material1.Toolbar" parent="Widget.MaterialComponents.Toolbar.Primary" />
+
+    <style name="Style.FastLyrics.Material1.AppBarLayout" parent="Widget.MaterialComponents.AppBarLayout.Surface">
+        <item name="statusBarForeground">?attr/colorPrimaryVariant</item>
+    </style>
 
     <!-- Material 2 Theme -->
     <style name="Theme.FastLyrics.Material2.Base" parent="Theme.MaterialComponents.DayNight.NoActionBar">

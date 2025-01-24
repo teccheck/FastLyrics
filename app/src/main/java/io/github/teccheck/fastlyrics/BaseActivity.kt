@@ -2,6 +2,7 @@ package io.github.teccheck.fastlyrics
 
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.activity.enableEdgeToEdge
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
@@ -16,6 +17,7 @@ abstract class BaseActivity : AppCompatActivity() {
         settings = Settings(this)
         setTheme(settings.getMaterialStyle())
         setNightMode(settings.getAppTheme())
+        enableEdgeToEdge()
 
         super.onCreate(savedInstanceState)
     }

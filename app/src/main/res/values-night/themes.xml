@@ -14,6 +14,11 @@
         <item name="navigationViewStyle">@style/Style.FastLyrics.Material2.NavView</item>
     </style>
 
+    <style name="Style.FastLyrics.Material2.AppBarLayout" parent="Widget.MaterialComponents.AppBarLayout.Surface">
+        <item name="elevation">0dp</item>
+        <item name="statusBarForeground">@color/theme_background_dark</item>
+    </style>
+
     <style name="Style.FastLyrics.Material2.Toolbar" parent="Widget.MaterialComponents.Toolbar.Surface">
         <item name="android:background">@color/theme_background_dark</item>
         <item name="elevation">0dp</item>
