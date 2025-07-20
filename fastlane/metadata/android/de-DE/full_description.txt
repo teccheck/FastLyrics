@@ -1,2 +1,8 @@
-FastLyrics läd automatisch Songtexte zum aktuell laufenden Song herunter.
-Außerdem werden die Songtexte gespeichert, um sie offline anzuschauen
+<i>FastLyrics</i> ist eine App, die Liedtexte für den Song, den du gerade hörst, herunterlädt. Es ist ein Klon von <a href="https://github.com/QuickLyric/QuickLyric">QuickLyric</a>, aber moderner und in aktiver Entwicklung.
+
+<b>Features:</b>
+
+* Abrufen des Titels, der gerade auf dem Gerät gespielt wird
+* Abrufen von Liedtexten für das gerade abgespielte Lied
+* Speichern von Liedtexten für die Offline-Nutzung
+* Material 1 & 2 Design
